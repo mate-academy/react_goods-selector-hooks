@@ -71,13 +71,17 @@ export const App: React.FC = () => {
           )
         }
 
-        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <button
-          data-cy="ClearButton"
-          type="button"
-          className="delete ml-3"
-          onClick={() => setSelectedGood('')}
-        />
+        {
+          selectedGood && (
+            <button
+              data-cy="ClearButton"
+              type="button"
+              className="delete ml-3"
+              aria-label="clear button"
+              onClick={() => setSelectedGood('')}
+            />
+          )
+        }
       </h1>
 
       <table className="table">
