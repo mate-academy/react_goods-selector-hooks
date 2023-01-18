@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import cn from 'classnames';
+
 import 'bulma/css/bulma.css';
 import './App.scss';
 
@@ -15,71 +17,94 @@ export const goods = [
   'Garlic',
 ];
 
-export const App: React.FC = () => (
-  <main className="section container">
-    <h1 className="title">No goods selected</h1>
+interface Button {
+  data: string
+  class: string
+  action: () => void
+  symbol: string
+}
 
-    <h1 className="title is-flex is-align-items-center">
-      Jam is selected
+export const App: React.FC = () => {
+  const [selectedGood, setSelectedGood] = useState('Jam');
 
-      {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-      <button
-        data-cy="ClearButton"
-        type="button"
-        className="delete ml-3"
-      />
-    </h1>
+  const clearSelected = () => setSelectedGood('');
+  const isSelected = (good: string) => selectedGood === good;
 
-    <table className="table">
-      <tbody>
-        <tr data-cy="Good">
-          <td>
-            <button
-              data-cy="AddButton"
-              type="button"
-              className="button"
-            >
-              +
-            </button>
-          </td>
+  const getButtonProps = (good: string): Button => ({
+    true: {
+      data: 'RemoveButton',
+      class: 'button is-info',
+      action: clearSelected,
+      symbol: '-',
+    },
 
-          <td data-cy="GoodTitle" className="is-vcentered">
-            Dumplings
-          </td>
-        </tr>
+    false: {
+      data: 'AddButton',
+      class: 'button',
+      action: () => setSelectedGood(good),
+      symbol: '+',
+    },
+  })[`${isSelected(good)}`];
 
-        <tr data-cy="Good" className="has-background-success-light">
-          <td>
-            <button
-              data-cy="RemoveButton"
-              type="button"
-              className="button is-info"
-            >
-              -
-            </button>
-          </td>
+  return (
+    <main className="section container">
+      <h1
+        className={cn('title', {
+          'is-flex is-align-items-center': selectedGood,
+        })}
+      >
+        {selectedGood
+          ? (
+            <>
+              {`${selectedGood} is selected`}
 
-          <td data-cy="GoodTitle" className="is-vcentered">
-            Jam
-          </td>
-        </tr>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+              <button
+                data-cy="ClearButton"
+                type="button"
+                className="delete ml-3"
+                onClick={clearSelected}
+              />
+            </>
+          ) : 'No goods selected'}
+      </h1>
 
-        <tr data-cy="Good">
-          <td>
-            <button
-              data-cy="AddButton"
-              type="button"
-              className="button"
-            >
-              +
-            </button>
-          </td>
+      <table className="table">
+        <tbody>
+          {goods.map(good => {
+            const button = getButtonProps(good);
 
-          <td data-cy="GoodTitle" className="is-vcentered">
-            Garlic
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
-);
+            return (
+              <tr
+                key={good}
+                data-cy="Good"
+                className={cn({
+                  'has-background-success-light': isSelected(good),
+                })}
+              >
+                <td>
+                  <button
+                    type="button"
+                    data-cy={button.data}
+                    className={button.class}
+                    onClick={button.action}
+                  >
+                    {button.symbol}
+                  </button>
+
+                </td>
+
+                <td
+                  data-cy="GoodTitle"
+                  className="is-vcentered"
+                >
+                  {good}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </main>
+  );
+};
