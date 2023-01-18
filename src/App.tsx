@@ -17,7 +17,7 @@ export const goods: string[] = [
 ];
 
 export const App: React.FC = () => {
-  const [selectedGood, setSelectedGood] = useState('jam');
+  const [selectedGood, setSelectedGood] = useState('Jam');
 
   return (
     <main className="section container">
