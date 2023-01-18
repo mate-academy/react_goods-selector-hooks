@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import 'bulma/css/bulma.css';
 import './App.scss';
 import cn from 'classnames';
+import { AddButton } from './components/AddButton';
 
 export const goods = [
   'Dumplings',
@@ -16,7 +17,7 @@ export const goods = [
   'Garlic',
 ];
 
-export const App: React.FC = () => {
+export const App: FC = () => {
   const [selectedGood, setSelectedGood] = useState('Jam');
 
   const handleRemoveGood = () => setSelectedGood('');
@@ -60,23 +61,11 @@ export const App: React.FC = () => {
                 })}
               >
                 <td>
-                  <button
-                    data-cy={isGoodSelected
-                      ? 'RemoveButton'
-                      : 'AddButton'}
-                    type="button"
-                    onClick={() => handleGoodToggle(good, isGoodSelected)}
-                    className={cn(
-                      'button',
-                      {
-                        'is-info': isGoodSelected,
-                      },
-                    )}
-                  >
-                    {isGoodSelected
-                      ? '-'
-                      : '+'}
-                  </button>
+                  <AddButton
+                    good={good}
+                    isSelected={isGoodSelected}
+                    handleGoodToggle={handleGoodToggle}
+                  />
                 </td>
 
                 <td data-cy="GoodTitle" className="is-vcentered">
