@@ -66,7 +66,7 @@ export const App: React.FC = () => {
       <h1 className="title is-flex is-align-items-center">
         {
           (!selectedGood
-            ? 'No good is selected'
+            ? 'No goods selected'
             : `${selectedGood} is selected`
           )
         }
