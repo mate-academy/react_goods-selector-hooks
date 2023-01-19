@@ -41,6 +41,7 @@ export const App: React.FC = () => {
         <tbody>
           {goods.map(good => (
             <tr
+              key={good}
               data-cy="Good"
               className={cn({
                 'has-background-success-light': good === selectedGood,
