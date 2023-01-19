@@ -44,6 +44,7 @@ export const App: React.FC = () => {
                   ? 'has-background-success-light'
                   : ''
               }
+              key={good}
             >
               <td>
                 {(selectedGood !== good)
