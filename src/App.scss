@@ -1,3 +1,19 @@
 iframe {
   display: none;
 }
+
+.main {
+  background-image: url(backgroundGoods.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.title {
+  justify-content: center;
+  text-align: center;
+}
+
+.table {
+  margin: 0 auto;
+  width: 400px;
+}
