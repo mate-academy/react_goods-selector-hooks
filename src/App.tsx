@@ -18,7 +18,32 @@ export const goods = [
 export const App: React.FC = () => {
   const [selectedGood, setSelectedGood] = useState('Jam');
 
-  const goodsList = goods.map(good => (
+  return (
+    <main className="section container">
+      <h1 className="title is-flex is-align-items-center">
+        {
+          (!selectedGood
+            ? 'No goods selected'
+            : `${selectedGood} is selected`
+          )
+        }
+
+        {
+          selectedGood && (
+            <button
+              data-cy="ClearButton"
+              type="button"
+              className="delete ml-3"
+              aria-label="clear-button"
+              onClick={() => setSelectedGood('')}
+            />
+          )
+        }
+      </h1>
+
+      <table className="table">
+        <tbody>
+          {goods.map(good => (
     <tr
       data-cy="Good"
       key={good}
@@ -59,34 +84,7 @@ export const App: React.FC = () => {
         {good}
       </td>
     </tr>
-  ));
-
-  return (
-    <main className="section container">
-      <h1 className="title is-flex is-align-items-center">
-        {
-          (!selectedGood
-            ? 'No goods selected'
-            : `${selectedGood} is selected`
-          )
-        }
-
-        {
-          selectedGood && (
-            <button
-              data-cy="ClearButton"
-              type="button"
-              className="delete ml-3"
-              aria-label="clear-button"
-              onClick={() => setSelectedGood('')}
-            />
-          )
-        }
-      </h1>
-
-      <table className="table">
-        <tbody>
-          {goodsList}
+  ))};
         </tbody>
       </table>
     </main>
