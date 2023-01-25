@@ -85,7 +85,6 @@ export const App: React.FC = () => {
               </td>
             </tr>
           ))}
-          ;
         </tbody>
       </table>
     </main>
