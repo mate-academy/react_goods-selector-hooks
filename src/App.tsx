@@ -17,11 +17,12 @@ export const goods = [
 ];
 
 export const App: React.FC = () => {
-  const [selectedGood, setSelectedgood] = useState("Jam");
+  const [selectedGood, setSelectedGood] = useState("Jam");
 
   const handleRemove = () => {
-    setSelectedgood("");
+    setSelectedGood("");
   };
+
   return (
     <main className="section container">
       {selectedGood ? (
@@ -43,6 +44,7 @@ export const App: React.FC = () => {
         <tbody>
           {goods.map((good) => (
             <tr
+              key={good}
               data-cy="Good"
               className={className({
                 "has-background-success-light": good === selectedGood,
@@ -63,7 +65,7 @@ export const App: React.FC = () => {
                     data-cy="AddButton"
                     type="button"
                     className="button"
-                    onClick={() => setSelectedgood(good)}
+                    onClick={() => setSelectedGood(good)}
                   >
                     +
                   </button>
