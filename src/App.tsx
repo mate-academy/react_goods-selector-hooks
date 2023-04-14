@@ -81,24 +81,3 @@ export const App: React.FC = () => {
     </main>
   );
 };
-
-//   data-cy="Good"
-//   key={good}
-// >
-//   <td>
-//     <button
-//       data-cy="AddButton"
-//       type="button"
-//       className="button"
-//       onClick={() => chosenGood(good)}
-//     >
-//       +
-//     </button>
-//   </td>
-//   <td
-//     data-cy="GoodTitle"
-//     className="is-vcentered"
-//   >
-//     {good}
-//   </td>
-// </tr>
