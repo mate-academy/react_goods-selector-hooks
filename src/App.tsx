@@ -16,33 +16,28 @@ export const goods = [
 ];
 
 export const App: React.FC = () => {
-  const [chosenElement, chosenGood] = useState(goods[8]);
-  const [reset, onReset] = useState(true);
+  const [selectedGood, chosenGood] = useState(goods[8]);
 
   const clear = () => {
-    chosenGood(goods[-1]);
-
-    onReset(prevState => !prevState);
+    chosenGood('');
   };
 
   return (
     <main className="section container">
 
       <h1 className="title is-flex is-align-items-center">
-        { chosenElement === goods[-1]
+        { selectedGood === ''
           ? 'No goods selected'
-          : `${chosenElement} is selected` }
-        {reset
-          ? (
-            <button
-              data-cy="ClearButton"
-              type="button"
-              className="delete ml-3"
-              aria-label="button"
-              onClick={clear}
-            />
-          )
-          : null}
+          : `${selectedGood} is selected`}
+        {selectedGood !== '' && (
+          <button
+            data-cy="ClearButton"
+            type="button"
+            className="delete ml-3"
+            aria-label="button"
+            onClick={clear}
+          />
+        )}
       </h1>
 
       <table className="table">
@@ -51,20 +46,19 @@ export const App: React.FC = () => {
             return (
               <tr
                 data-cy="Good"
-                className={` ${chosenElement === item ? 'has-background-success-light' : ''}`}
+                className={` ${selectedGood === item ? 'has-background-success-light' : ''}`}
                 key={item}
               >
                 <td>
                   <button
                     data-cy="AddButton"
                     type="button"
-                    className={`button  ${chosenElement === item ? 'is-info' : ''}`}
+                    className={`button  ${selectedGood === item ? 'is-info' : ''}`}
                     onClick={() => {
                       chosenGood(item);
-                      onReset(true);
                     }}
                   >
-                    {chosenElement === item ? '-' : '+'}
+                    {selectedGood === item ? '-' : '+'}
                   </button>
                 </td>
                 <td
