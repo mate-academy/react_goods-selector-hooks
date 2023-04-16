@@ -16,7 +16,7 @@ export const goods = [
 ];
 
 export const App: React.FC = () => {
-  const [selectedGood, setSelectedGood] = useState(goods[8]);
+  const [selectedGood, setSelectedGood] = useState('Jam');
 
   const clear = () => {
     setSelectedGood('');
