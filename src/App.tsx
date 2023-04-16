@@ -54,7 +54,7 @@ export const App: React.FC = () => {
                   {selectedGood === item
                     ? (
                       <button
-                        data-cy="AddButton"
+                        data-cy="RemoveButton"
                         type="button"
                         className="button is-info"
                         onClick={() => {
