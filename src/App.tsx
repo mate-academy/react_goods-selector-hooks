@@ -19,6 +19,8 @@ export const goods = [
 export const App: React.FC = () => {
   const [selectedGood, setSelectedGood] = useState(goods[8]);
 
+  const clear = () => setSelectedGood('');
+
   return (
     <main className="section container">
       {selectedGood ? (
@@ -27,11 +29,10 @@ export const App: React.FC = () => {
           <button
             data-cy="ClearButton"
             type="button"
+            aria-label="clear"
             className="delete ml-3"
-            onClick={() => setSelectedGood('')}
-          >
-            <br />
-          </button>
+            onClick={clear}
+          />
         </h1>
       ) : (
         <h1 className="title">No goods selected</h1>
@@ -56,7 +57,7 @@ export const App: React.FC = () => {
                       data-cy="RemoveButton"
                       type="button"
                       className="button is-info"
-                      onClick={() => setSelectedGood('')}
+                      onClick={clear}
                     >
                       -
                     </button>
