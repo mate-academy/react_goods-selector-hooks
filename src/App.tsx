@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import 'bulma/css/bulma.css';
 import './App.scss';
 
@@ -52,7 +53,9 @@ export const App: React.FC = () => {
                     selectedGood === good ? 'RemoveButton' : 'AddButton'
                   }
                   type="button"
-                  className={`button ${selectedGood === good ? 'is-info' : ''}`}
+                  className={classNames(
+                    'button', { 'is-info': selectedGood === good },
+                  )}
                   onClick={() => selectGood(good)}
                 >
                   {selectedGood === good ? '-' : '+'}
